@@ -95,8 +95,46 @@ class TestWin(QWidget):
         if time.toString("hh:mm:ss") == "00:00:00":
             self.timer.stop()
 
+    def timer_sits(self):
+        global time
+        time = QTime(0, 0, 30)
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.timer2Event)
+        self.timer.start(1500) #one squat in 1.5 seconds
+
+    def timer2Event(self):
+        global time
+        time = time.addSecs(-1)
+        self.timer_txt.setText(time.toString("hh:mm:ss")[6:8]) #[6:8] convert from "hh:mm:ss" to be "ss"
+        self.timer_txt.setFont(QFont("Times", 36, QFont.Bold))
+        self.timer_txt.setStyleSheet("color: rgb(0,255,0)")
+        if time.toString("hh:mm:ss") == "00:00:00":
+            self.timer.stop()
+
+    def timer_final(self):
+        global time
+        time = QTime(0, 1, 0)
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.timer3Event)
+        self.timer.start(1000)
+
+    def timer3Event(self):
+        global time
+        time = time.addSecs(-1)
+        self.timer_txt.setText(time.toString("hh:mm:ss"))
+        if int(time.toString("hh:mm:ss")[6:8]) >= 45:
+            self.timer_txt.setStyleSheet("color: rgb(0,255,0)")
+        elif int(time.toString("hh:mm:ss")[6:8]) <= 15:
+            self.timer_txt.setStyleSheet("color: rgb(0,255,0)")
+        else:
+            self.timer_txt.setStyleSheet("color: rgb(0,0,0)")
+        self.timer_txt.setFont(QFont("Times", 36, QFont.Bold))
+        if time.toString("hh:mm:ss") == "00:00:00":
+            self.timer.stop()
+
+
     def connects(self):
         self.sendresult_btn.clicked.connect(self.click_next)
         self.start_test_1_btn.clicked.connect(self.time_test)
-        # self.start_test_2_btn.clicked.connect()
-        # self.start_test_3_btn.clicked.connect()
+        self.start_test_2_btn.clicked.connect(self.timer_sits)
+        self.start_test_3_btn.clicked.connect(self.timer_final)
