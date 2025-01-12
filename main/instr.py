@@ -1,3 +1,4 @@
+from PyQt5.QtCore import QTime
 
 window_x, window_y = 200, 100
 window_widht, window_height = 1000, 600
@@ -23,7 +24,10 @@ start_test_3 = 'Start the final test'
 
 name_txt = 'Enter Your full name:'
 age_txt = 'Full years:'
-timer_txt = ''
+
+time = QTime(0, 0, 15)
+timer_txt = time.toString('hh:mm:ss')
+
 test_txt_1 = '''Lie on your back and take your pulse for 15 seconds. 
     Click the "Start first test" button to start the timer.\n
     Write down the result in the appropriate field.'''

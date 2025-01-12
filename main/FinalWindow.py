@@ -14,6 +14,12 @@ class FinalWin(QWidget):
 
         self.show()
 
+    # def result(self):
+    #     if self.exp.age < 7:
+    #         self.index = 0
+    #         return 'there is no data for this age'
+
+
     def set_appear(self):
         self.setWindowTitle('Result')
         self.resize(window_widht, window_height)
