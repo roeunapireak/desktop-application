@@ -43,5 +43,9 @@ hint_test_1 = '0'
 hint_test_2 = '0'
 hint_test_3 = '0'
 
-
+txt_res1 = "low. See your doctor right away!"
+txt_res2 = "satisfactory. See your doctor!"
+txt_res3 = "average. It may be worth seeing your doctor to get checked out."
+txt_res4 = "above average"
+txt_res5 = "high"
 
