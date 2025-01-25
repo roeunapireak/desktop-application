@@ -20,11 +20,16 @@ class FinalWin(QWidget):
         self.move(window_x, window_y)
     
     def initUI(self):
-        self.work_text = QLabel('Cardiac performance: ' + '0')
-        self.index_text = QLabel('Roufier Index: ' + '0')
+        self.work_text = QLabel('Cardiac performance: ' + self.results())
+        self.index_text = QLabel('Roufier Index: ' + str(self.index))
 
         self.layout_line = QVBoxLayout()
         self.layout_line.addWidget(self.index_text, alignment = Qt.AlignCenter)
         self.layout_line.addWidget(self.work_text, alignment = Qt.AlignCenter)        
         self.setLayout(self.layout_line)
 
+
+    def results(self):
+        if self.exp.age < 7:
+            self.index = 0
+            return "there is no data for this age"
